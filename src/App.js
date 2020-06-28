@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Wrapper from "./components/Wrapper";
-import Title from "./components/Header";
+import Title from "./components/Title";
 import GameCards from "./components/GameCards";
 import fighters from "./fighters.json";
 
