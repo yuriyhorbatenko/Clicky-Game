@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "image": "./assets/img/scorpion.png",
+    "clicked": false
+  },
+  {
+    "id": 2,
+    "image": "./assets/img/liukang.png",
+    "clicked": false
+  },
+  {
+    "id": 3,
+    "image": "./assets/img/kunglao.png",
+    "clicked": false
+  },
+  {
+    "id": 4,
+    "image": "./assets/img/subzero.png",
+    "clicked": false
+  },
+  {
+    "id": 5,
+    "image": "./assets/img/kitana.png",
+    "clicked": false
+  },
+  {
+    "id": 6,
+    "image": "./assets/img/johnnycage.png",
+    "clicked": false
+  },
+  {
+    "id": 7,
+    "image": "./assets/img/sonya.png",
+    "clicked": false
+  },
+  {
+    "id": 8,
+    "image": "./assets/img/jax.png",
+    "clicked": false
+  },
+  {
+    "id": 9,
+    "image": "./assets/img/kano.png",
+    "clicked": false
+  },
+  {
+    "id": 10,
+    "image": "./assets/img/baraka.png",
+    "clicked": false
+  },
+  {
+    "id": 11,
+    "image": "./assets/img/raiden.png",
+    "clicked": false
+  },
+  {
+    "id": 12,
+    "image": "./assets/img/noobsaibot.png",
+    "clicked": false
+  }
+]

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import "./style.css";
 
-class Form extends Component {
+class Game extends Component {
   // Setting the component's initial state
   state = {
     firstName: "",
@@ -80,4 +79,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default Game;
