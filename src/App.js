@@ -8,13 +8,11 @@ import github from "./img/github.png";
 import Zoom from "react-reveal/Zoom";
 import Shake from 'react-reveal/Shake';
 
-
 let shuffle = require("shuffle-array");
 let correctGuesses = 0;
 let bestScore = 0;
 let gameMessage = "Click on a Fighter Card to Start a Game!";
 let spy = true;
-let appear = false;
 
 class App extends Component {
 
@@ -23,21 +21,17 @@ class App extends Component {
     correctGuesses,
     bestScore,
     gameMessage,
-    spy,
-    appear
+    spy
   };
 
   gameLogic = id => {
 
+    this.setState({ spy: true });
+
     const fighters = this.state.fighters;
     const fightersCards = fighters.filter(fighter => fighter.id === id);
 
-
     if (fightersCards[0].clicked) {
-
-      if (spy = true) {
-        spy = false;
-      }
 
       correctGuesses = 0;
       gameMessage = "Wrong Card, Game Over!";
@@ -50,12 +44,11 @@ class App extends Component {
         return a.id - b.id || a.name.localeCompare(b.name);
       });
 
-
       this.setState({ gameMessage });
       this.setState({ fighters });
       this.setState({ correctGuesses });
       this.setState({ bestScore });
-      this.setState({ spy });
+      this.setState({ spy: false });
 
       console.log(gameMessage);
       console.log("Correct Guesses: " + correctGuesses);
@@ -129,7 +122,7 @@ class App extends Component {
             </a>
           </div>
 
-          <Shake spy={this.state.spy} appear={this.state.appear}>
+          <Shake spy={this.state.spy}>
             <Zoom>
               <div className="gameMessage">
                 <img src={logo} className="logo" />
@@ -150,7 +143,7 @@ class App extends Component {
           </div>
         </Title>
 
-        <Shake spy={this.state.spy} appear={this.state.appear}>
+        <Shake spy={this.state.spy}>
           <div className="allCards">
             {this.state.fighters.map(fighter => (
               <Zoom>
