@@ -19,13 +19,6 @@
   margin-top: 15px;
 }
 
-/* .GameCard {
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  
-} */
 .GameCard:hover {
   box-shadow: 0 0 10px 1px red;
 }
-

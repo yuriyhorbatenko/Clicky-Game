@@ -4,12 +4,16 @@ import Title from "./components/Title";
 import GameCards from "./components/GameCards";
 import fighters from "./fighters.json";
 import logo from './img/koin.png';
-import "./App.css";
+import github from './img/github.png';
+import { Animated } from "react-animated-css";
 
 let shuffle = require('shuffle-array')
 let correctGuesses = 0;
 let bestScore = 0;
 let gameMessage = "Click on a Fighter Card to Start a Game!";
+let animationIn = "zoomIn";
+let animationOut = "";
+let isVisible = true;
 
 class App extends Component {
 
@@ -17,7 +21,11 @@ class App extends Component {
     fighters,
     correctGuesses,
     bestScore,
-    gameMessage
+    gameMessage,
+    animationIn,
+    animationOut,
+    isVisible,
+
   };
 
   gameLogic = id => {
@@ -107,14 +115,16 @@ class App extends Component {
         <Title>
 
           <div className="title">
-            Mortal Kombat <br></br>
-            Clicky Game
+            <a href={"."}>
+              Mortal Kombat <br></br>
+              Clicky Game
+            </a>
           </div>
 
           <div className="gameMessage">
-            <img src={logo} alt="Logo" className="logo" />
+            <img src={logo} className="logo" />
             {this.state.gameMessage}
-            <img src={logo} alt="Logo" className="logo" />
+            <img src={logo} className="logo" />
           </div>
 
           <div className="live-results">
@@ -129,18 +139,25 @@ class App extends Component {
 
         </Title>
 
-        <div className="allCards">
-          {this.state.fighters.map(fighter => (
+        <Animated animationIn={this.state.animationIn} animationOut={this.state.animationOut} isVisible={this.state.isVisible}>
+          <div className="allCards">
+            {this.state.fighters.map(fighter => (
 
-            <GameCards
-              gameLogic={this.gameLogic}
-              id={fighter.id}
-              key={fighter.id}
-              image={fighter.image}
-            />
-          ))}
+              <GameCards
+                gameLogic={this.gameLogic}
+                id={fighter.id}
+                key={fighter.id}
+                image={fighter.image}
+              />
+            ))}
+          </div>
+        </Animated>
+
+        <div className="footer">
+          <a target="_blank" href="https://yuriyhorbatenko.github.io/">
+            <img src={github} className="github" />
+          </a>
         </div>
-
       </Wrapper>
     );
   }
