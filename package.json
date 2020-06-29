@@ -10,8 +10,11 @@
     "react": "^16.13.1",
     "react-animated-css": "^1.2.1",
     "react-dom": "^16.13.1",
+    "react-reveal": "^1.2.2",
     "react-scripts": "3.4.1",
-    "shuffle-array": "^1.0.1"
+    "react-transition-group": "^4.4.1",
+    "shuffle-array": "^1.0.1",
+    "sort-array": "^4.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

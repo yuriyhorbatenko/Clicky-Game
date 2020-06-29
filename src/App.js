@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 import GameCards from "./components/GameCards";
 import fighters from "./fighters.json";
-import logo from './img/koin.png';
-import github from './img/github.png';
-import { Animated } from "react-animated-css";
+import logo from "./img/koin.png";
+import github from "./img/github.png";
+import Zoom from "react-reveal/Zoom";
+import Shake from 'react-reveal/Shake';
 
-let shuffle = require('shuffle-array')
+
+let shuffle = require("shuffle-array");
 let correctGuesses = 0;
 let bestScore = 0;
 let gameMessage = "Click on a Fighter Card to Start a Game!";
-let animationIn = "zoomIn";
-let animationOut = "";
-let isVisible = true;
+let spy = true;
+let appear = false;
 
 class App extends Component {
 
@@ -22,35 +23,43 @@ class App extends Component {
     correctGuesses,
     bestScore,
     gameMessage,
-    animationIn,
-    animationOut,
-    isVisible,
-
+    spy,
+    appear
   };
 
   gameLogic = id => {
 
-    const fighters = this.state.fighters
+    const fighters = this.state.fighters;
     const fightersCards = fighters.filter(fighter => fighter.id === id);
 
 
     if (fightersCards[0].clicked) {
 
+      if (spy = true) {
+        spy = false;
+      }
+
       correctGuesses = 0;
-      gameMessage = "Wrong Card, Game Over!"
+      gameMessage = "Wrong Card, Game Over!";
 
       for (let i = 0; i < fighters.length; i++) {
         fighters[i].clicked = false;
       }
 
+      fighters.sort(function (a, b) {
+        return a.id - b.id || a.name.localeCompare(b.name);
+      });
+
+
       this.setState({ gameMessage });
       this.setState({ fighters });
       this.setState({ correctGuesses });
       this.setState({ bestScore });
+      this.setState({ spy });
 
-      console.log(gameMessage)
-      console.log("Correct Guesses: " + correctGuesses)
-      console.log("Best Score: " + bestScore)
+      console.log(gameMessage);
+      console.log("Correct Guesses: " + correctGuesses);
+      console.log("Best Score: " + bestScore);
 
     }
 
@@ -65,7 +74,7 @@ class App extends Component {
         bestScore = correctGuesses;
       }
 
-      shuffle(fighters)
+      shuffle(fighters);
 
       this.setState({ gameMessage });
       this.setState({ fighters });
@@ -113,7 +122,6 @@ class App extends Component {
       <Wrapper>
 
         <Title>
-
           <div className="title">
             <a href={"."}>
               Mortal Kombat <br></br>
@@ -121,11 +129,15 @@ class App extends Component {
             </a>
           </div>
 
-          <div className="gameMessage">
-            <img src={logo} className="logo" />
-            {this.state.gameMessage}
-            <img src={logo} className="logo" />
-          </div>
+          <Shake spy={this.state.spy} appear={this.state.appear}>
+            <Zoom>
+              <div className="gameMessage">
+                <img src={logo} className="logo" />
+                {this.state.gameMessage}
+                <img src={logo} className="logo" />
+              </div>
+            </Zoom>
+          </Shake>
 
           <div className="live-results">
             <h2 className="correctGuesses">
@@ -136,22 +148,22 @@ class App extends Component {
               Now Guessed: {this.state.correctGuesses}
             </h2>
           </div>
-
         </Title>
 
-        <Animated animationIn={this.state.animationIn} animationOut={this.state.animationOut} isVisible={this.state.isVisible}>
+        <Shake spy={this.state.spy} appear={this.state.appear}>
           <div className="allCards">
             {this.state.fighters.map(fighter => (
-
-              <GameCards
-                gameLogic={this.gameLogic}
-                id={fighter.id}
-                key={fighter.id}
-                image={fighter.image}
-              />
+              <Zoom>
+                <GameCards
+                  gameLogic={this.gameLogic}
+                  id={fighter.id}
+                  key={fighter.id}
+                  image={fighter.image}
+                />
+              </Zoom>
             ))}
           </div>
-        </Animated>
+        </Shake>
 
         <div className="footer">
           <a target="_blank" href="https://yuriyhorbatenko.github.io/">
@@ -162,6 +174,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;
