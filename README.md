@@ -4,9 +4,9 @@
 
 **Unit 19: React Assignment**
 
-![](img/screen.jpg)
+![](public/assets/img/screen.jpg)
 
-Try to select all 12 Game Cards, without repeating. Cards will shuffle every time you click on them. Select carefully.
+**Try to select all 12 Game Cards, without repeating. Cards will shuffle every time you click on them. Select carefully.**
 
 **Good Luck & Enjoy**
 
