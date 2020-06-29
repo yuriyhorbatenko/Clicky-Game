@@ -3,6 +3,7 @@ import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 import GameCards from "./components/GameCards";
 import fighters from "./fighters.json";
+import logo from './img/koin.png';
 import "./App.css";
 
 let shuffle = require('shuffle-array')
@@ -28,7 +29,7 @@ class App extends Component {
     if (fightersCards[0].clicked) {
 
       correctGuesses = 0;
-      gameMessage = "You Already Clicked on this Fighter Card, Game Over!"
+      gameMessage = "Wrong Card, Game Over!"
 
       for (let i = 0; i < fighters.length; i++) {
         fighters[i].clicked = false;
@@ -50,7 +51,7 @@ class App extends Component {
 
       fightersCards[0].clicked = true;
       correctGuesses++;
-      gameMessage = "Guessed a Fighter Card!"
+      gameMessage = "Lucky Guess!"
 
       if (correctGuesses > bestScore) {
         bestScore = correctGuesses;
@@ -102,26 +103,30 @@ class App extends Component {
     return (
 
       <Wrapper>
+
         <Title>
+
           <div className="title">
-            Mortal Kombat Clicky Game
+            Mortal Kombat <br></br>
+            Clicky Game
+          </div>
+
+          <div className="gameMessage">
+            <img src={logo} alt="Logo" className="logo" />
+            {this.state.gameMessage}
+            <img src={logo} alt="Logo" className="logo" />
           </div>
 
           <div className="live-results">
-
-            <h2 className="gameMessage">
-              {this.state.gameMessage}
-            </h2>
-
             <h2 className="correctGuesses">
-              Correct Guesses: {this.state.correctGuesses}
-            </h2>
-
-            <h2 className="bestScore">
               Best Score: {this.state.bestScore}
             </h2>
 
+            <h2 className="bestScore">
+              Now Guessed: {this.state.correctGuesses}
+            </h2>
           </div>
+
         </Title>
 
         <div className="allCards">

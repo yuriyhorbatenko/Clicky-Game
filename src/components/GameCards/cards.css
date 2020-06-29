@@ -1,0 +1,31 @@
+.allCards {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  max-width: 50%;
+  margin: 0 auto 0 auto;
+  margin-top: 80px;
+  background-color: rgba(0, 0, 0, 0.781);
+  padding: 35px;
+  outline: 3px double red;
+  outline-offset: 0px;
+}
+
+.image {
+  width: 180px;
+  height: 180px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+/* .GameCard {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  
+} */
+.GameCard:hover {
+  box-shadow: 0 0 10px 1px red;
+}
+

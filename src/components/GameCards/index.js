@@ -1,12 +1,12 @@
 import React from "react";
-import "./style.css";
+import "./cards.css";
 
 function GameCards(props) {
   return (
 
-    <div onClick={() => props.gameLogic(props.id)} className="GameCard">
+    <div onClick={() => props.gameLogic(props.id)}>
       <div className="image">
-        <img alt={props.name} src={props.image} />
+        <img alt={props.name} src={props.image} className="GameCard" />
       </div>
     </div>
 

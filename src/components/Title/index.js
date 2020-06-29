@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+import "./title.css";
 
 function Title(props) {
   return <div className="header">{props.children}</div>;
