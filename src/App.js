@@ -3,8 +3,9 @@ import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 import GameCards from "./components/GameCards";
 import fighters from "./fighters.json";
+import "./App.css";
 
-
+let shuffle = require('shuffle-array')
 let correctGuesses = 0;
 let bestScore = 0;
 let gameMessage = "Click on a Fighter Card to Start a Game!";
@@ -20,10 +21,11 @@ class App extends Component {
 
   gameLogic = id => {
 
-    const fighters = this.state.fighters.filter(fighter => fighter.id === id);
+    const fighters = this.state.fighters
+    const fightersCards = fighters.filter(fighter => fighter.id === id);
 
 
-    if (fighters[0].clicked) {
+    if (fightersCards[0].clicked) {
 
       correctGuesses = 0;
       gameMessage = "You Already Clicked on this Fighter Card, Game Over!"
@@ -46,15 +48,15 @@ class App extends Component {
 
     else if (correctGuesses < 11) {
 
-      fighters[0].clicked = true;
+      fightersCards[0].clicked = true;
       correctGuesses++;
-      gameMessage = "You Successfully Guessed a Fighter Card!"
+      gameMessage = "Guessed a Fighter Card!"
 
       if (correctGuesses > bestScore) {
         bestScore = correctGuesses;
       }
 
-      // fighters.sort(function (a, b) { return 0.5 - Math.random() });
+      shuffle(fighters)
 
       this.setState({ gameMessage });
       this.setState({ fighters });
@@ -70,7 +72,7 @@ class App extends Component {
 
     else {
 
-      fighters[0].clicked = true;
+      fightersCards[0].clicked = true;
       correctGuesses = 0;
       bestScore = 12;
       gameMessage = "You Won! Fatality!!!"
@@ -79,7 +81,7 @@ class App extends Component {
         fighters[i].clicked = false;
       }
 
-      // fighters.sort(function (a, b) { return 0.5 - Math.random() });
+      shuffle(fighters)
 
       this.setState({ gameMessage });
       this.setState({ fighters });
@@ -100,37 +102,44 @@ class App extends Component {
     return (
 
       <Wrapper>
-        <Title>Friends List</Title>
+        <Title>
+          <div className="title">
+            Mortal Kombat Clicky Game
+          </div>
 
-        <h3 className="scoreSummary">
-          {this.state.gameMessage}
-        </h3>
+          <div className="live-results">
 
-        <h3 className="scoreSummary card-header">
-          Correct Guesses: {this.state.correctGuesses}
-          <br />
-                    Best Score: {this.state.bestScore}
-        </h3>
+            <h2 className="gameMessage">
+              {this.state.gameMessage}
+            </h2>
 
-        {this.state.fighters.map(fighter => (
-          <GameCards
-            gameLogic={this.gameLogic}
-            id={fighter.id}
-            key={fighter.id}
-            image={fighter.image}
-          />
-        ))}
+            <h2 className="correctGuesses">
+              Correct Guesses: {this.state.correctGuesses}
+            </h2>
+
+            <h2 className="bestScore">
+              Best Score: {this.state.bestScore}
+            </h2>
+
+          </div>
+        </Title>
+
+        <div className="allCards">
+          {this.state.fighters.map(fighter => (
+
+            <GameCards
+              gameLogic={this.gameLogic}
+              id={fighter.id}
+              key={fighter.id}
+              image={fighter.image}
+            />
+          ))}
+        </div>
 
       </Wrapper>
     );
   }
-
-
-
 }
-
-
-
 
 
 export default App;

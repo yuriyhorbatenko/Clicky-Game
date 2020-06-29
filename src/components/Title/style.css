@@ -1,8 +1,9 @@
-.title {
+.header {
   width: 100%;
+  height: 10vh;
   text-align: center;
   font-size: 3rem;
-  text-decoration: underline;
+  text-decoration: none;
   color: #2A77AE;
-  margin-bottom: 50px;
+  background-color: tomato;
 }
